@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The properties of a code text field.
 public struct CodeTextFieldStyleConfiguration {
-    public typealias Label = Text
+  public typealias Label = Text
 
   /// A digit of a code text field.
   public let label: Label
@@ -16,7 +16,7 @@ public protocol CodeTextFieldStyle {
   typealias Configuration = CodeTextFieldStyleConfiguration
   associatedtype Body: View
 
-  /// Creates a view that represents the body of a button.
+  /// Creates a view that represents the body of a code text field.
   func makeBody(configuration: Configuration) -> Body
 }
 
@@ -27,9 +27,9 @@ public struct DefaultCodeTextFieldStyle: CodeTextFieldStyle {
     configuration.label
       .multilineTextAlignment(.center)
       .font(.title)
-      .padding()
+      .frame(maxWidth: .infinity, maxHeight: 64)
       .background(.regularMaterial)
-      .cornerRadius(12)
+      .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
       .scaleEffect(configuration.isFocused ? 1.2 : 1.0)
   }
 }

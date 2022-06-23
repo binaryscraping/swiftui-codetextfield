@@ -53,14 +53,12 @@ public struct CodeTextField: View {
       }
 
       TextField("", text: $code)
-        .hidden()
+        .opacity(0)
         .textContentType(.oneTimeCode)
       #if os(iOS)
         .keyboardType(.numberPad)
       #endif
       .focused($isTextFieldFocused)
-      .foregroundColor(.clear)
-      .accentColor(.clear)
       .onChange(of: code) { newValue in
         if newValue.count == numberOfDigits {
           isTextFieldFocused = false
